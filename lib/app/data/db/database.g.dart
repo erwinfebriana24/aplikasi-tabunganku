@@ -20,13 +20,14 @@ class DatabaseAdapter extends TypeAdapter<Database> {
       ..id = fields[0] as int?
       ..name = fields[1] as String?
       ..price = fields[2] as int?
-      ..namePrice = fields[3] as String?;
+      ..namePrice = fields[3] as String?
+      ..date = fields[4] as String?;
   }
 
   @override
   void write(BinaryWriter writer, Database obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -34,7 +35,9 @@ class DatabaseAdapter extends TypeAdapter<Database> {
       ..writeByte(2)
       ..write(obj.price)
       ..writeByte(3)
-      ..write(obj.namePrice);
+      ..write(obj.namePrice)
+      ..writeByte(4)
+      ..write(obj.date);
   }
 
   @override
@@ -62,13 +65,14 @@ class DatabasePengeluaranAdapter extends TypeAdapter<DatabasePengeluaran> {
       ..id = fields[0] as int?
       ..name = fields[1] as String?
       ..price = fields[2] as int?
-      ..namePrice = fields[3] as String?;
+      ..namePrice = fields[3] as String?
+      ..date = fields[4] as String?;
   }
 
   @override
   void write(BinaryWriter writer, DatabasePengeluaran obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -76,7 +80,9 @@ class DatabasePengeluaranAdapter extends TypeAdapter<DatabasePengeluaran> {
       ..writeByte(2)
       ..write(obj.price)
       ..writeByte(3)
-      ..write(obj.namePrice);
+      ..write(obj.namePrice)
+      ..writeByte(4)
+      ..write(obj.date);
   }
 
   @override

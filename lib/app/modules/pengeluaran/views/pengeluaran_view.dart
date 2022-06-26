@@ -180,7 +180,8 @@ class PengeluaranView extends GetView<PengeluaranController> {
                                                 IconButton(
                                                     onPressed: (() {
                                                       Get.toNamed(
-                                                          Routes.EDIT_PENGELUARAN,
+                                                          Routes
+                                                              .EDIT_PENGELUARAN,
                                                           arguments: database);
                                                     }),
                                                     icon: Icon(
@@ -244,7 +245,14 @@ class PengeluaranView extends GetView<PengeluaranController> {
                                                         color: appRed,
                                                         fontSize: 16,
                                                         fontWeight:
-                                                            FontWeight.normal)),
+                                                            FontWeight.w800)),
+                                                SizedBox(height: 10),
+                                                Text("${database.date}",
+                                                    style: GoogleFonts.lato(
+                                                        color: appBlack,
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w800)),
                                               ],
                                             ),
                                           ),
@@ -256,7 +264,10 @@ class PengeluaranView extends GetView<PengeluaranController> {
                 SliverToBoxAdapter(
                   child: IconButton(
                       onPressed: (() => Get.toNamed(Routes.ADD_PENGELUARAN)),
-                      icon: Icon(Icons.add_circle, size: 30,)),
+                      icon: Icon(
+                        Icons.add_circle,
+                        size: 30,
+                      )),
                 )
               ],
             ),

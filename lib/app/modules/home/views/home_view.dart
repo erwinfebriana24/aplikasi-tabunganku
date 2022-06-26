@@ -244,7 +244,15 @@ class HomeView extends GetView<HomeController> {
                                                         color: appGreen,
                                                         fontSize: 16,
                                                         fontWeight:
-                                                            FontWeight.normal)),
+                                                            FontWeight.w800)),
+                                                SizedBox(height: 10),
+                                                Text(
+                                                    "${database.date}",
+                                                    style: GoogleFonts.lato(
+                                                        color: appBlack,
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w800)),
                                               ],
                                             ),
                                           ),
@@ -256,7 +264,10 @@ class HomeView extends GetView<HomeController> {
                 SliverToBoxAdapter(
                   child: IconButton(
                       onPressed: (() => Get.toNamed(Routes.ADD_DATA)),
-                      icon: Icon(Icons.add_circle, size: 30,)),
+                      icon: Icon(
+                        Icons.add_circle,
+                        size: 30,
+                      )),
                 )
               ],
             ),

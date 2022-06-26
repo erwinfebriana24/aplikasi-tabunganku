@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:menabung/app/data/db/database.dart';
 import 'package:menabung/app/routes/app_pages.dart';
@@ -41,12 +42,18 @@ class AddPengeluaranController extends GetxController {
     print(splitFinnal);
     isLoading.value = true;
     try {
+       // Mendapatkan tanggal
+      final now = DateTime.now();
+      final formatter = DateFormat('dd-MM-yyyy');
+      final format = formatter.format(now);
+      ////////////////////////////////////////////
       final isValid = formKey.currentState!.validate();
       if (isValid) {
         var data = DatabasePengeluaran()
           ..name = nameC.text
           ..price = int.parse(splitFinnal)
-          ..namePrice = priceC.text;
+          ..namePrice = priceC.text
+          ..date = format;
         final box = DatabaseManager.getAllDatabasePengeluaran();
         await box.add(data);
         Get.offAllNamed(Routes.DASHBOARD);

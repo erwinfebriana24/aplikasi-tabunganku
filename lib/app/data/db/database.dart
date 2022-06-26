@@ -12,6 +12,8 @@ class Database extends HiveObject {
   int? price;
   @HiveField(3)
   String? namePrice;
+  @HiveField(4)
+  String? date;
 }
 
 @HiveType(typeId: 1)
@@ -24,6 +26,8 @@ class DatabasePengeluaran extends HiveObject {
   int? price;
   @HiveField(3)
   String? namePrice;
+  @HiveField(4)
+  String? date;
 }
 
 class DatabaseManager {
