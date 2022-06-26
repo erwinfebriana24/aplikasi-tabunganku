@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable, sized_box_for_whitespace, prefer_is_empty
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable, sized_box_for_whitespace, prefer_is_empty, unnecessary_string_interpolations
 import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,6 +35,7 @@ class PengeluaranView extends GetView<PengeluaranController> {
             child: CustomScrollView(
               slivers: [
                 SliverAppBar(
+                  backgroundColor: appBlue,
                   floating: true,
                   snap: true,
                   // pinned: true,
@@ -128,139 +129,102 @@ class PengeluaranView extends GetView<PengeluaranController> {
                         )),
                   ],
                 ),
-                SliverToBoxAdapter(
-                    child: ValueListenableBuilder<Box<DatabasePengeluaran>>(
-                        valueListenable:
-                            DatabaseManager.getAllDatabasePengeluaran()
-                                .listenable(),
-                        builder: (context, box, _) {
-                          var allData = box.values.toList();
-                          if (allData.length == 0) {
-                            return Column(
-                              children: [
-                                Container(
-                                  width: size.width * .50,
-                                  height: size.height * .30,
-                                  child:
-                                      Lottie.asset("assets/lottie/cart.json"),
-                                ),
-                                Text("Ayo hitung pengeluaranmu ",
-                                    style: GoogleFonts.lato(
-                                        color: appBlack,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            );
-                          } else {
-                            return ListView.builder(
-                                physics: ScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: allData.length,
-                                itemBuilder: (context, index) {
-                                  DatabasePengeluaran database = allData[index];
-                                  return FadeAnimation(
-                                      delay: 0.8 * index,
-                                      child: SafeArea(
-                                        child: Card(
-                                          shape: RoundedRectangleBorder(
-                                            // side: BorderSide(color: appBlue, width: 1),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          color: appWhite,
-                                          margin: EdgeInsets.only(
-                                              top: size.height * .02,
-                                              bottom: size.height * .02,
-                                              left: size.width * .05,
-                                              right: size.width * .05),
-                                          child: ListTile(
-                                            trailing: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                IconButton(
-                                                    onPressed: (() {
-                                                      Get.toNamed(
-                                                          Routes
-                                                              .EDIT_PENGELUARAN,
-                                                          arguments: database);
-                                                    }),
-                                                    icon: Icon(
-                                                      Icons.edit,
-                                                      color: appBlue,
-                                                    )),
-                                                IconButton(
-                                                    onPressed: (() async {
-                                                      await database.delete();
-                                                      controller.sumTotal();
-                                                      Get.snackbar("Berhasil",
-                                                          "Berhasil menghapus ${database.name}",
-                                                          colorText: appWhite,
-                                                          icon: Lottie.asset(
-                                                              "assets/lottie/check.json"),
-                                                          snackPosition:
-                                                              SnackPosition.TOP,
-                                                          backgroundColor:
-                                                              appBlue,
-                                                          borderColor: appWhite,
-                                                          borderWidth: 2,
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  15),
-                                                          duration: Duration(
-                                                              seconds: 4),
-                                                          dismissDirection:
-                                                              DismissDirection
-                                                                  .horizontal,
-                                                          forwardAnimationCurve:
-                                                              Curves
-                                                                  .linearToEaseOut);
-                                                    }),
-                                                    icon: Icon(
-                                                      Icons.delete,
-                                                      color: appRed,
-                                                    ))
-                                              ],
-                                            ),
-                                            contentPadding: EdgeInsets.only(
-                                                top: 5,
-                                                bottom: 5,
-                                                left: 20,
-                                                right: 20),
-                                            title: Text("${database.name}",
-                                                style: GoogleFonts.lato(
-                                                    color: appBlack,
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            subtitle: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                    "Rp ${formatter.format(database.price)}",
-                                                    style: GoogleFonts.lato(
-                                                        color: appRed,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w800)),
-                                                SizedBox(height: 10),
-                                                Text("${database.date}",
-                                                    style: GoogleFonts.lato(
-                                                        color: appBlack,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w800)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ));
+                controller.listData.length == 0
+                    ? SliverToBoxAdapter(
+                        child: Column(
+                          children: [
+                            Container(
+                              width: size.width * .50,
+                              height: size.height * .30,
+                              child: Lottie.asset("assets/lottie/cart.json"),
+                            ),
+                            Text("Ayo hitung pengeluaranmu ",
+                                style: GoogleFonts.lato(
+                                    color: appBlack,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold))
+                          ],
+                        ),
+                      )
+                    : SliverToBoxAdapter(
+                        child: Column(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                showDatePicker(
+                                        builder: (context, child) {
+                                          return Theme(
+                                              data: Theme.of(context).copyWith(
+                                                  colorScheme:
+                                                      ColorScheme.light(
+                                                          primary: appBlue),
+                                                  textButtonTheme:
+                                                      TextButtonThemeData(
+                                                          style: TextButton
+                                                              .styleFrom(
+                                                                  primary:
+                                                                      appRed))),
+                                              child: child!);
+                                        },
+                                        helpText: "Pilih tanggal",
+                                        cancelText: "Batal",
+                                        confirmText: "Pilih",
+                                        fieldLabelText: "Pilih tanggal",
+                                        fieldHintText: "Masukan tanggal ",
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(1940),
+                                        lastDate: DateTime(2025),
+                                        initialEntryMode:
+                                            DatePickerEntryMode.calendar)
+                                    .then((value) {
+                                  if (value != null) {
+                                    controller.date.value =
+                                        controller.convertDateTimeDisplay(
+                                            value.toString());
+                                    controller.onSearch();
+                                  }
                                 });
-                          }
-                        })),
+                              },
+                              icon: Icon(Icons.date_range_outlined),
+                              iconSize: 25,
+                              color: appBlue,
+                            ),
+                            Obx(() => Text(
+                                controller.date.value == ""
+                                    ? "Pilih tanggal"
+                                    : "${controller.date.value}",
+                                style: GoogleFonts.lato(
+                                    color: appBlack,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w800))),
+                            controller.valuess == ""
+                                ? Container()
+                                : IconButton(
+                                    onPressed: (() => controller.kondisiAwal()),
+                                    icon: Icon(Icons.restore_outlined))
+                          ],
+                        ),
+                      ),
+                controller.date.value == ""
+                    ? SliverToBoxAdapter(
+                        child: DataAwal(size: size, formatter: formatter))
+                    : controller.listDatabase.length == 0
+                        ? SliverToBoxAdapter(
+                            child: SizedBox(
+                              height: size.height * .40,
+                              child: Center(
+                                  child: Text("Data tidak ditemukan",
+                                      style: GoogleFonts.lato(
+                                          color: appBlack,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
+                          )
+                        : SliverToBoxAdapter(
+                            child: DataBedasarkanTanggal(
+                                size: size, formatter: formatter),
+                          ),
                 SliverToBoxAdapter(
                   child: IconButton(
                       onPressed: (() => Get.toNamed(Routes.ADD_PENGELUARAN)),
@@ -293,5 +257,215 @@ class PengeluaranView extends GetView<PengeluaranController> {
         // ),
       );
     });
+  }
+}
+
+class DataAwal extends StatelessWidget {
+  const DataAwal({
+    Key? key,
+    required this.size,
+    required this.formatter,
+  }) : super(key: key);
+
+  final Size size;
+  final NumberFormat formatter;
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = Get.put(PengeluaranController());
+    var list = DatabaseManager.getAllDatabasePengeluaran();
+    var box = list.values.toList();
+    return ListView.builder(
+        physics: ScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: list.length,
+        itemBuilder: (context, index) {
+          DatabasePengeluaran database = box[index];
+          return FadeAnimation(
+              delay: 0.8 * index,
+              child: SafeArea(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    // side: BorderSide(color: appBlue, width: 1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  color: appWhite,
+                  margin: EdgeInsets.only(
+                      top: size.height * .02,
+                      bottom: size.height * .02,
+                      left: size.width * .05,
+                      right: size.width * .05),
+                  child: ListTile(
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                            onPressed: (() {
+                              Get.toNamed(Routes.EDIT_PENGELUARAN,
+                                  arguments: database);
+                            }),
+                            icon: Icon(
+                              Icons.edit,
+                              color: appBlue,
+                            )),
+                        IconButton(
+                            onPressed: (() async {
+                              await database.delete();
+                              controller.sumTotal();
+                              Get.snackbar("Berhasil",
+                                  "Berhasil menghapus ${database.name}",
+                                  colorText: appWhite,
+                                  icon:
+                                      Lottie.asset("assets/lottie/check.json"),
+                                  snackPosition: SnackPosition.TOP,
+                                  backgroundColor: appBlue,
+                                  borderColor: appWhite,
+                                  borderWidth: 2,
+                                  margin: EdgeInsets.all(15),
+                                  duration: Duration(seconds: 4),
+                                  dismissDirection: DismissDirection.horizontal,
+                                  forwardAnimationCurve:
+                                      Curves.linearToEaseOut);
+                            }),
+                            icon: Icon(
+                              Icons.delete,
+                              color: appRed,
+                            ))
+                      ],
+                    ),
+                    contentPadding:
+                        EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),
+                    title: Text("${database.name}",
+                        style: GoogleFonts.lato(
+                            color: appBlack,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold)),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text("Rp ${formatter.format(database.price)}",
+                            style: GoogleFonts.lato(
+                                color: appRed,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800)),
+                        SizedBox(height: 10),
+                        Text("${database.date}",
+                            style: GoogleFonts.lato(
+                                color: appBlack,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800)),
+                      ],
+                    ),
+                  ),
+                ),
+              ));
+        });
+  }
+}
+
+class DataBedasarkanTanggal extends StatelessWidget {
+  const DataBedasarkanTanggal({
+    Key? key,
+    required this.size,
+    required this.formatter,
+  }) : super(key: key);
+
+  final Size size;
+  final NumberFormat formatter;
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = Get.put(PengeluaranController());
+    return ListView.builder(
+        physics: ScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: controller.listData.length,
+        itemBuilder: (context, index) {
+          DatabasePengeluaran database = controller.listDatabase[index];
+          return FadeAnimation(
+              delay: 0.8 * index,
+              child: SafeArea(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    // side: BorderSide(color: appBlue, width: 1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  color: appWhite,
+                  margin: EdgeInsets.only(
+                      top: size.height * .02,
+                      bottom: size.height * .02,
+                      left: size.width * .05,
+                      right: size.width * .05),
+                  child: ListTile(
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                            onPressed: (() {
+                              Get.toNamed(Routes.EDIT_DATA,
+                                  arguments: database);
+                            }),
+                            icon: Icon(
+                              Icons.edit,
+                              color: appBlue,
+                            )),
+                        IconButton(
+                            onPressed: (() async {
+                              await database.delete();
+                              controller.sumTotal();
+                              Get.snackbar("Berhasil",
+                                  "Berhasil menghapus ${database.name}",
+                                  colorText: appWhite,
+                                  icon:
+                                      Lottie.asset("assets/lottie/check.json"),
+                                  snackPosition: SnackPosition.TOP,
+                                  backgroundColor: appBlue,
+                                  borderColor: appWhite,
+                                  borderWidth: 2,
+                                  margin: EdgeInsets.all(15),
+                                  duration: Duration(seconds: 4),
+                                  dismissDirection: DismissDirection.horizontal,
+                                  forwardAnimationCurve:
+                                      Curves.linearToEaseOut);
+                            }),
+                            icon: Icon(
+                              Icons.delete,
+                              color: appRed,
+                            ))
+                      ],
+                    ),
+                    contentPadding:
+                        EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),
+                    title: Text("${database.name}",
+                        style: GoogleFonts.lato(
+                            color: appBlack,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold)),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text("Rp ${formatter.format(database.price)}",
+                            style: GoogleFonts.lato(
+                                color: appRed,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800)),
+                        SizedBox(height: 10),
+                        Text("${database.date}",
+                            style: GoogleFonts.lato(
+                                color: appBlack,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800)),
+                      ],
+                    ),
+                  ),
+                ),
+              ));
+        });
   }
 }

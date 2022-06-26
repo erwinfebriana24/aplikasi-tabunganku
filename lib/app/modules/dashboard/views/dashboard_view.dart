@@ -20,7 +20,7 @@ class DashboardView extends GetView<DashboardController> {
       return Scaffold(
           body: SafeArea(child: screens[controller.currentIndex]),
           bottomNavigationBar: BottomNavyBar(
-            iconSize: 30,
+            iconSize: 25,
             curve: Curves.easeIn,
             backgroundColor: appBlue,
               selectedIndex: controller.currentIndex,

@@ -2,11 +2,44 @@
 
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 import 'package:menabung/app/data/db/database.dart';
 
 class PengeluaranController extends GetxController {
   late BannerAd bannerAd;
   RxBool isAdLoad = false.obs;
+  dynamic formatted;
+  RxString date = "".obs;
+  ////////////Pencarian Bedasarkan Tanggal////////////////////
+  List<DatabasePengeluaran> listDatabase = <DatabasePengeluaran>[];
+  var listData = DatabaseManager.getAllDatabasePengeluaran();
+  String valuess = "";
+  //////////////////////////////////////////
+  void onSearch() {
+    var data = listData.values.toList();
+    listDatabase = data
+        .where((element) => element.date!.toLowerCase().contains(date))
+        .toList();
+    valuess = date.toString();
+    update();
+  }
+
+  String convertDateTimeDisplay(String date) {
+    final DateFormat displayFormater = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
+    final DateFormat serverFormater = DateFormat('dd-MM-yyyy');
+    final DateTime displayDate = displayFormater.parse(date);
+    formatted = serverFormater.format(displayDate);
+    return formatted;
+  }
+
+  kondisiAwal() {
+    var data = listData.values.toList();
+    listDatabase = data;
+    valuess = "";
+    date.value = "";
+    update();
+  }
 
   void initBannerAd() async {
     bannerAd = BannerAd(
