@@ -106,7 +106,9 @@ class EditDataView extends GetView<EditDataController> {
                                   color: appWhite,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold))
-                          : CircularProgressIndicator(),
+                          : CircularProgressIndicator(
+                            color: appWhite,
+                          ),
                     )),
               ],
             ),

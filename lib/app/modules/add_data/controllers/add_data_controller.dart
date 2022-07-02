@@ -32,7 +32,7 @@ class AddDataController extends GetxController {
         ));
   }
 
-  void addData() async {
+  Future <void> addData() async {
     var data = priceC.text;
     var split = data.replaceAll('Rp', '');
     var splitFinnal = split.replaceAll(',', '');
@@ -41,7 +41,8 @@ class AddDataController extends GetxController {
     print(splitFinnal);
     isLoading.value = true;
     try {
-      // Mendapatkan tanggal
+      Future.delayed(Duration(seconds: 1),(() async {
+        // Mendapatkan tanggal
       final now = DateTime.now();
       final formatter = DateFormat('dd-MM-yyyy');
       final format = formatter.format(now);
@@ -94,6 +95,9 @@ class AddDataController extends GetxController {
       } else {
         isLoading.value = false;
       }
+
+      }));
+      
     } catch (e) {
       isLoading.value = false;
     }

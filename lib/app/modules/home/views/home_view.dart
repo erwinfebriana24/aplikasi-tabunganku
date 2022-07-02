@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:menabung/animation/fadeanimation.dart';
@@ -87,6 +86,9 @@ class HomeView extends GetView<HomeController> {
                           size: 25,
                         )),
                     IconButton(
+                        onPressed: (() => controller.kondisiAwal()),
+                        icon: Icon(Icons.restore_outlined)),
+                    IconButton(
                         onPressed: () {
                           Get.defaultDialog(
                               backgroundColor: appBlue,
@@ -150,60 +152,83 @@ class HomeView extends GetView<HomeController> {
                     : SliverToBoxAdapter(
                         child: Column(
                           children: [
-                            IconButton(
-                              onPressed: () {
-                                showDatePicker(
-                                        builder: (context, child) {
-                                          return Theme(
-                                              data: Theme.of(context).copyWith(
-                                                  colorScheme:
-                                                      ColorScheme.light(
-                                                          primary: appBlue),
-                                                  textButtonTheme:
-                                                      TextButtonThemeData(
-                                                          style: TextButton
-                                                              .styleFrom(
-                                                                  primary:
-                                                                      appRed))),
-                                              child: child!);
-                                        },
-                                        helpText: "Pilih tanggal lahir",
-                                        cancelText: "Batal",
-                                        confirmText: "Pilih",
-                                        fieldLabelText: "Pilih tanggal",
-                                        fieldHintText: "Masukan tanggal lahir",
-                                        context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(1940),
-                                        lastDate: DateTime(2025),
-                                        initialEntryMode:
-                                            DatePickerEntryMode.calendar)
-                                    .then((value) {
-                                  if (value != null) {
-                                    controller.date.value =
-                                        controller.convertDateTimeDisplay(
-                                            value.toString());
-                                    controller.onSearch();
-                                  }
-                                });
-                              },
-                              icon: Icon(Icons.date_range_outlined),
-                              iconSize: 25,
-                              color: appBlue,
+                            SizedBox(
+                              height: 10,
                             ),
-                            Obx(() => Text(
-                                controller.date.value == ""
-                                    ? "Pilih tanggal"
-                                    : "${controller.date.value}",
-                                style: GoogleFonts.lato(
-                                    color: appBlack,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w800))),
-                                    controller.valuess == ""
-                                ? Container()
-                                : IconButton(
-                                    onPressed: (() => controller.kondisiAwal()),
-                                    icon: Icon(Icons.restore_outlined))
+                            Container(
+                              height: size.height * .15,
+                              width: size.width * .90,
+                              // color: appWhite,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 7,
+                                    color: appBlack
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                                color: appWhite,
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: size.width * .90,
+                                    height: size.height * .10,
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          showDatePicker(
+                                                  builder: (context, child) {
+                                                    return Theme(
+                                                        data: Theme.of(context).copyWith(
+                                                            colorScheme:
+                                                                ColorScheme.light(
+                                                                    primary:
+                                                                        appBlue),
+                                                            textButtonTheme: TextButtonThemeData(
+                                                                style: TextButton
+                                                                    .styleFrom(
+                                                                        primary:
+                                                                            appRed))),
+                                                        child: child!);
+                                                  },
+                                                  helpText:
+                                                      "Pilih tanggal lahir",
+                                                  cancelText: "Batal",
+                                                  confirmText: "Pilih",
+                                                  fieldLabelText:
+                                                      "Pilih tanggal",
+                                                  fieldHintText:
+                                                      "Masukan tanggal lahir",
+                                                  context: context,
+                                                  initialDate: DateTime.now(),
+                                                  firstDate: DateTime(2020),
+                                                  lastDate: DateTime(2030),
+                                                  initialEntryMode:
+                                                      DatePickerEntryMode
+                                                          .calendar)
+                                              .then((value) {
+                                            if (value != null) {
+                                              controller.date.value = controller
+                                                  .convertDateTimeDisplay(
+                                                      value.toString());
+                                              controller.onSearch();
+                                            }
+                                          });
+                                        },
+                                        child: Lottie.asset(
+                                            "assets/lottie/calendar2.json")),
+                                  ),
+                                  Obx(() => Text(
+                                      controller.date.value == ""
+                                          ? "Pilih tanggal tabungan"
+                                          : "${controller.date.value}",
+                                      style: GoogleFonts.lato(
+                                          color: appBlack,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w800))),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -226,7 +251,6 @@ class HomeView extends GetView<HomeController> {
                             child: DataBedasarkanTanggal(
                                 size: size, formatter: formatter),
                           ),
-                          
                 SliverToBoxAdapter(
                   child: IconButton(
                       onPressed: (() => Get.toNamed(Routes.ADD_DATA)),
@@ -287,6 +311,8 @@ class DataAwal extends StatelessWidget {
               delay: 0.8 * index,
               child: SafeArea(
                 child: Card(
+                  elevation: 10,
+                  shadowColor: appBlue,
                   shape: RoundedRectangleBorder(
                     // side: BorderSide(color: appBlue, width: 1),
                     borderRadius: BorderRadius.circular(10),
@@ -391,6 +417,7 @@ class DataBedasarkanTanggal extends StatelessWidget {
               delay: 0.8 * index,
               child: SafeArea(
                 child: Card(
+                  elevation: 10,
                   shape: RoundedRectangleBorder(
                     // side: BorderSide(color: appBlue, width: 1),
                     borderRadius: BorderRadius.circular(10),
@@ -418,6 +445,7 @@ class DataBedasarkanTanggal extends StatelessWidget {
                             onPressed: (() async {
                               await database.delete();
                               controller.sumTotal();
+                              controller.kondisiAwal();
                               Get.snackbar("Berhasil",
                                   "Berhasil menghapus ${database.name}",
                                   colorText: appWhite,

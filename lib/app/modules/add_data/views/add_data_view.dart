@@ -107,7 +107,9 @@ class AddDataView extends GetView<AddDataController> {
                                   color: appWhite,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold))
-                          : CircularProgressIndicator(),
+                          : CircularProgressIndicator(
+                            color: appWhite,
+                          ),
                     )),
               ],
             ),

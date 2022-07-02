@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable, sized_box_for_whitespace
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:menabung/app/modules/home/views/home_view.dart';
 import 'package:menabung/app/modules/main_page/views/main_page_view.dart';
 import 'package:menabung/app/modules/pengeluaran/views/pengeluaran_view.dart';
@@ -20,7 +18,7 @@ class DashboardView extends GetView<DashboardController> {
       return Scaffold(
           body: SafeArea(child: screens[controller.currentIndex]),
           bottomNavigationBar: BottomNavyBar(
-            iconSize: 25,
+            iconSize: 26,
             curve: Curves.easeIn,
             backgroundColor: appBlue,
               selectedIndex: controller.currentIndex,
@@ -29,7 +27,7 @@ class DashboardView extends GetView<DashboardController> {
               items: [
                 BottomNavyBarItem(
                   icon: Icon(Icons.wallet_outlined),
-                  title: Text('Tabungan'),
+                  title: Text('Masuk'),
                   activeColor: appWhite,
                 ),
                 BottomNavyBarItem(
@@ -38,7 +36,7 @@ class DashboardView extends GetView<DashboardController> {
                     activeColor: appWhite),
                 BottomNavyBarItem(
                     icon: Icon(Icons.account_balance_wallet_outlined),
-                    title: Text('Pengeluaran'),
+                    title: Text('Keluar'),
                     activeColor: appWhite),
               ])
           );

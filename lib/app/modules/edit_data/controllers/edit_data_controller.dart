@@ -14,7 +14,6 @@ class EditDataController extends GetxController {
   final formKey = GlobalKey<FormState>(); // form validator key
   RxBool isLoading = false.obs;
 
-
   Future<void> editData(Database database) async {
     var data = priceC.text;
     var split = data.replaceAll('Rp', '');
@@ -23,50 +22,52 @@ class EditDataController extends GetxController {
     print(splitFinnal);
     isLoading.value = true;
     try {
-      final isValid = formKey.currentState!.validate();
-      if (isValid) {
-        database.name = nameC.text;
-        database.price = int.parse(splitFinnal);
-        database.namePrice = priceC.text;
-        database.save();
-        Get.offAllNamed(Routes.DASHBOARD);
-        Get.defaultDialog(
-            backgroundColor: appBlue,
-            barrierDismissible: false,
-            title: "",
-            content: Column(
-              children: [
-                Container(
-                  width: 130,
-                  height: 130,
-                  child: Lottie.asset("assets/lottie/check.json"),
-                ),
-                Text(
-                  "Berhasil mengubah data",
-                  style: GoogleFonts.lato(
-                      color: appWhite,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: Text(
-                    "OK",
+      Future.delayed(Duration(seconds: 1), (() {
+        final isValid = formKey.currentState!.validate();
+        if (isValid) {
+          database.name = nameC.text;
+          database.price = int.parse(splitFinnal);
+          database.namePrice = priceC.text;
+          database.save();
+          Get.offAllNamed(Routes.DASHBOARD);
+          Get.defaultDialog(
+              backgroundColor: appBlue,
+              barrierDismissible: false,
+              title: "",
+              content: Column(
+                children: [
+                  Container(
+                    width: 130,
+                    height: 130,
+                    child: Lottie.asset("assets/lottie/check.json"),
+                  ),
+                  Text(
+                    "Berhasil mengubah data",
                     style: GoogleFonts.lato(
                         color: appWhite,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
-                  )),
-            ]);
-        isLoading.value = false;
-      } else {
-        isLoading.value = false;
-      }
+                  )
+                ],
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: Text(
+                      "OK",
+                      style: GoogleFonts.lato(
+                          color: appWhite,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    )),
+              ]);
+          isLoading.value = false;
+        } else {
+          isLoading.value = false;
+        }
+      }));
     } catch (e) {
       isLoading.value = false;
     }
