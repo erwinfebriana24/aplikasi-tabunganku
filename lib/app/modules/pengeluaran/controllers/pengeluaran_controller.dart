@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_const_constructors
+// ignore_for_file: avoid_print, prefer_const_constructors, unnecessary_cast
 
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -16,7 +16,7 @@ class PengeluaranController extends GetxController {
   var listData = DatabaseManager.getAllDatabasePengeluaran();
   String valuess = "";
   //////////////////////////////////////////
-  void onSearch() {
+  void searchByDate() {
     var data = listData.values.toList();
     listDatabase = data
         .where((element) => element.date!.toLowerCase().contains(date))
@@ -55,11 +55,20 @@ class PengeluaranController extends GetxController {
     await bannerAd.load();
   }
 
-  int sumTotal() {
+  int totalAllPrice() {
     int total = 0;
     final box = DatabaseManager.getAllDatabasePengeluaran();
     for (int i = 0; i < box.length; i++) {
       final data = box.getAt(i) as DatabasePengeluaran;
+      total += data.price!;
+    }
+    update();
+    return total;
+  }
+   int totalByDate() {
+    int total = 0;
+    for (int i = 0; i < listDatabase.length; i++) {
+      final data = listDatabase[i] as DatabasePengeluaran;
       total += data.price!;
     }
     update();

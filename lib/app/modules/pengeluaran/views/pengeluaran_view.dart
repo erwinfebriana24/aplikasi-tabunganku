@@ -59,17 +59,30 @@ class PengeluaranView extends GetView<PengeluaranController> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text("Pengeluaran Kamu",
-                                style: GoogleFonts.lato(
-                                    color: appBlack,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold)),
-                            Text(
-                                "Rp ${formatter.format(controller.sumTotal())}",
-                                style: GoogleFonts.lato(
-                                    color: appRed,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold))
+                            controller.valuess.isEmpty
+                                ? Text("Total Pengeluaran",
+                                    style: GoogleFonts.lato(
+                                        color: appBlack,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold))
+                                : Text("Mutasi Pengeluaran",
+                                    style: GoogleFonts.lato(
+                                        color: appBlack,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold)),
+                            controller.valuess.isEmpty
+                                ? Text(
+                                    "Rp ${formatter.format(controller.totalAllPrice())}",
+                                    style: GoogleFonts.lato(
+                                        color: appRed,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold))
+                                : Text(
+                                    "Rp ${formatter.format(controller.totalByDate())}",
+                                    style: GoogleFonts.lato(
+                                        color: appRed,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold))
                           ],
                         ),
                       ),
@@ -188,13 +201,13 @@ class PengeluaranView extends GetView<PengeluaranController> {
                                                         child: child!);
                                                   },
                                                   helpText:
-                                                      "Pilih tanggal lahir",
+                                                      "Pilih Tanggal",
                                                   cancelText: "Batal",
                                                   confirmText: "Pilih",
                                                   fieldLabelText:
-                                                      "Pilih tanggal",
+                                                      "Pilih Tanggal",
                                                   fieldHintText:
-                                                      "Masukan tanggal lahir",
+                                                      "Masukan Tanggal",
                                                   context: context,
                                                   initialDate: DateTime.now(),
                                                   firstDate: DateTime(2020),
@@ -207,7 +220,7 @@ class PengeluaranView extends GetView<PengeluaranController> {
                                               controller.date.value = controller
                                                   .convertDateTimeDisplay(
                                                       value.toString());
-                                              controller.onSearch();
+                                              controller.searchByDate();
                                             }
                                           });
                                         },
@@ -334,7 +347,7 @@ class DataAwal extends StatelessWidget {
                         IconButton(
                             onPressed: (() async {
                               await database.delete();
-                              controller.sumTotal();
+                              controller.totalAllPrice();
                               Get.snackbar("Berhasil",
                                   "Berhasil menghapus ${database.name}",
                                   colorText: appWhite,
@@ -439,7 +452,7 @@ class DataBedasarkanTanggal extends StatelessWidget {
                         IconButton(
                             onPressed: (() async {
                               await database.delete();
-                              controller.sumTotal();
+                              controller.totalAllPrice();
                               controller.kondisiAwal();
                               Get.snackbar("Berhasil",
                                   "Berhasil menghapus ${database.name}",

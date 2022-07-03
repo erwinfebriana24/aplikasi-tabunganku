@@ -18,28 +18,29 @@ class DashboardView extends GetView<DashboardController> {
       return Scaffold(
           body: SafeArea(child: screens[controller.currentIndex]),
           bottomNavigationBar: BottomNavyBar(
-            iconSize: 26,
-            curve: Curves.easeIn,
-            backgroundColor: appBlue,
+              iconSize: 26,
+              curve: Curves.easeIn,
+              backgroundColor: appGreenSoft,
               selectedIndex: controller.currentIndex,
               showElevation: true,
               onItemSelected: controller.changeTab,
               items: [
                 BottomNavyBarItem(
-                  icon: Icon(Icons.wallet_outlined),
-                  title: Text('Masuk'),
-                  activeColor: appWhite,
-                ),
+                    icon: Icon(Icons.account_balance),
+                    title: Text('Masuk'),
+                    activeColor: appBlue,
+                    inactiveColor: appBlack),
                 BottomNavyBarItem(
                     icon: Icon(Icons.home),
                     title: Text('Utama'),
-                    activeColor: appWhite),
+                    activeColor: appBlue,
+                    inactiveColor: appBlack),
                 BottomNavyBarItem(
                     icon: Icon(Icons.account_balance_wallet_outlined),
                     title: Text('Keluar'),
-                    activeColor: appWhite),
-              ])
-          );
+                    activeColor: appBlue,
+                    inactiveColor: appBlack),
+              ]));
     });
   }
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_const_constructors, unused_local_variable
+// ignore_for_file: avoid_print, prefer_const_constructors, unused_local_variable, unnecessary_cast
 
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -15,7 +15,7 @@ class HomeController extends GetxController {
   var listData = DatabaseManager.getAllDatabase();
   String valuess = "";
   //////////////////////////////////////////
-  void onSearch() {
+  void searchByDate() {
     var data = listData.values.toList();
     listDatabase = data
         .where((element) => element.date!.toLowerCase().contains(date))
@@ -54,11 +54,20 @@ class HomeController extends GetxController {
     update();
   }
 
-  int sumTotal() {
+  int totalAllPrice() {
     int total = 0;
     final box = DatabaseManager.getAllDatabase();
     for (int i = 0; i < box.length; i++) {
       final data = box.getAt(i) as Database;
+      total += data.price!;
+    }
+    update();
+    return total;
+  }
+  int totalByDate() {
+    int total = 0;
+    for (int i = 0; i < listDatabase.length; i++) {
+      final data = listDatabase[i] as Database;
       total += data.price!;
     }
     update();

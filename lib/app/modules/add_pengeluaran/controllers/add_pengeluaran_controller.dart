@@ -70,7 +70,7 @@ class AddPengeluaranController extends GetxController {
                   child: Lottie.asset("assets/lottie/check.json"),
                 ),
                 Text(
-                  "Berhasil menambah pengeluaran",
+                  "Berhasil menambah data",
                   style: GoogleFonts.lato(
                       color: appWhite,
                       fontSize: 16,
