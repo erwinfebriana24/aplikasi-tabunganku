@@ -54,8 +54,15 @@ class AddDataController extends GetxController {
           ..price = int.parse(splitFinnal)
           ..namePrice = priceC.text
           ..date = format;
+        var data2 = DatabaseGlobal()
+          ..name = nameC.text
+          ..price = int.parse(splitFinnal)
+          ..namePrice = priceC.text
+          ..date = format;
         final box = DatabaseManager.getAllDatabase();
+        final box2 = DatabaseManager.getDatabaseGlobal();
         await box.add(data);
+        await box2.add(data2);
         Get.offAllNamed(Routes.DASHBOARD);
         Get.defaultDialog(
             backgroundColor: appBlue,

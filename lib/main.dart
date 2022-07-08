@@ -14,8 +14,10 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(DatabaseAdapter());
   Hive.registerAdapter(DatabasePengeluaranAdapter());
+  Hive.registerAdapter(DatabaseGlobalAdapter());
   await Hive.openBox<Database>('database');
   await Hive.openBox<DatabasePengeluaran>('database_pengeluaran');
+  await Hive.openBox<DatabaseGlobal>('database_global');
   await MobileAds.instance.initialize();
   runApp(
     GetMaterialApp(
