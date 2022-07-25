@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,9 +17,9 @@ class EditDataView extends GetView<EditDataController> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: appBlue,
-          title: Text("Ubah Tabungan",
+          title: Text("ubah_tabungan",
               style: GoogleFonts.lato(
-                  color: appWhite, fontSize: 16, fontWeight: FontWeight.bold)),
+                  color: appWhite, fontSize: 16, fontWeight: FontWeight.bold)).tr(),
           centerTitle: true,
         ),
         body: Form(
@@ -32,7 +33,7 @@ class EditDataView extends GetView<EditDataController> {
                 TextFormField(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Nama tabungan tidak boleh kosong";
+                        return controller.tidak_kosong;
                       } else {
                         return null;
                       }
@@ -46,7 +47,7 @@ class EditDataView extends GetView<EditDataController> {
                     autocorrect: false,
                     textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
-                        labelText: "Nama Tabungan",
+                        labelText: controller.nama_tabungan,
                         labelStyle: GoogleFonts.lato(
                             color: appBlack,
                             fontSize: 16,
@@ -60,11 +61,11 @@ class EditDataView extends GetView<EditDataController> {
                 TextFormField(
                     inputFormatters: [
                       CurrencyTextInputFormatter(
-                          decimalDigits: 0, symbol: "Rp ")
+                          decimalDigits: 0, symbol: controller.mata_uang)
                     ],
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Jumlah uang tidak boleh kosong";
+                        return controller.jumlah_uang_tidak_boleh_kosong;
                       } else {
                         return null;
                       }
@@ -77,7 +78,7 @@ class EditDataView extends GetView<EditDataController> {
                     keyboardType: TextInputType.number,
                     autocorrect: false,
                     decoration: InputDecoration(
-                        labelText: "Jumlah Uang",
+                        labelText: controller.jumlah_uang,
                         labelStyle: GoogleFonts.lato(
                             color: appBlack,
                             fontSize: 16,
@@ -101,11 +102,11 @@ class EditDataView extends GetView<EditDataController> {
                         }
                       },
                       child: controller.isLoading.isFalse
-                          ? Text("Simpan",
+                          ? Text("simpan",
                               style: GoogleFonts.lato(
                                   color: appWhite,
                                   fontSize: 16,
-                                  fontWeight: FontWeight.bold))
+                                  fontWeight: FontWeight.bold)).tr()
                           : CircularProgressIndicator(
                             color: appWhite,
                           ),

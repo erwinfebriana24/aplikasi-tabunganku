@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,8 +10,9 @@ import 'package:menabung/app/data/db/database.dart';
 import 'package:menabung/theme/color.dart';
 import 'app/routes/app_pages.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(DatabaseAdapter());
   Hive.registerAdapter(DatabasePengeluaranAdapter());
@@ -20,7 +22,23 @@ void main() async {
   await Hive.openBox<DatabaseGlobal>('database_global');
   await MobileAds.instance.initialize();
   runApp(
-    GetMaterialApp(
+    EasyLocalization(
+        supportedLocales: [Locale('en', 'US'), Locale('id')],
+        path: 'assets/translations',
+        fallbackLocale: Locale('en', 'US'),
+        saveLocale: true,
+        child: MyApp()),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       theme: ThemeData(
           inputDecorationTheme: InputDecorationTheme(
               enabledBorder: OutlineInputBorder(
@@ -33,6 +51,6 @@ void main() async {
       title: "Application",
       initialRoute: Routes.SPLASH,
       getPages: AppPages.routes,
-    ),
-  );
+    );
+  }
 }

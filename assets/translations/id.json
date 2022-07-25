@@ -1,0 +1,53 @@
+{
+    "selisih": "Selisih Uang",
+    "keluar" : "Tekan sekali lagi untuk keluar",
+    "saran" : "Kritik dan Saran \n donganapps@gmail.com",
+    "grafik" : "Grafik Selisih \n Tabungan Dan Pengeluaran",
+    "tabungan" : "Tabungan",
+    "pengeluaran" : "Pengeluaran",
+    "total_tabungan" : "Total Tabungan",
+    "mutasi_tabungan" : "Riwayat Tabungan",
+    "ayo_menabung" : "Ayo menabung ",
+    "pilih_tanggal" : "Pilih tanggal",
+    "batal" : "Batal",
+    "pilih" : "Pilih" ,
+    "masukan_tanggal" : "Masukan tanggal",
+    "pilih_tanggal_tabungan" : "Pilih tanggal tabungan",
+    "data_tidak_ditemukan" : "Data tidak ditemukan",
+    "berhasil" : "Berhasil",
+    "berhasil_menghapus" : "Berhasil menghapus",
+    "total_pengeluaran" : "Total Pengeluaran",
+    "mutasi_pengeluaran" : "Riwayat Pengeluaran",
+    "ayo_hitung_pengeluaranmu" : "Ayo hitung pengeluaranmu",
+    "pilih_tanggal_pengeluaran" : "Pilih tanggal pengeluaran",
+
+    "tambah_tabungan" : "Tambah Tabungan",
+    "nama_tabungan_tidak_boleh_kosong" : "Nama tabungan tidak boleh kosong",
+    "nama_tabungan" : "Nama Tabungan",
+    "jumlah_uang_tidak_boleh_kosong" : "Jumlah uang tidak boleh kosong",
+    "jumlah_uang" : "Jamlah Uang",
+    "simpan" : "Simpan",
+
+    "tambah_pengeluaran" : "Tambah Pengeluaran",
+    "nama_pengeluaran_tidak_boleh_kosong" : "Nama pengeluaran tidak boleh kosong",
+    "nama_pengeluaran" : "Nama Pengeluaran",
+
+    "ubah_tabungan" : "Ubah Tabungan",
+    "ubah_pengeluaran" : "Ubah Pengeluaran",
+
+    "mata_uang" : "Rp {}",
+    "mata_uang2" : "Rp ",
+
+    "utama" : "Utama",
+    "masuk" : "Tabungan",
+    "keluarr" : "Pengeluaran",
+    "pengaturan" : "Pengaturan",
+
+    "pilih_bahasa" : "Pilih Bahasa",
+    "keluar_app" : "Keluar Aplikasi",
+
+    "berhasil_menambah_data" : "Berhasil menambah data",
+    "berhasil_mengubah_data" : "Berhasil mengubah data",
+    "berhasil_mengubah_bahasa" : "Berhasil mengubah bahasa"
+
+}

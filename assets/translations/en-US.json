@@ -1,0 +1,63 @@
+{
+    "selisih": "Margin Money",
+    "keluar" : "Press again to exit",
+    "saran" : "Criticism and Suggestions \n donganapps@gmail.com",
+    "grafik" : "Graph of Difference \n Savings And Expenditures",
+    "tabungan" : "Savings",
+    "pengeluaran" : "Expenditure",
+    "total_tabungan" : "Total Savings",
+    "mutasi_tabungan" : "Savings History",
+    "ayo_menabung" : "Let's save",
+    "pilih_tanggal" : "Select date",
+    "batal" : "Cancel",
+    "pilih" : "Select" ,
+    "masukan_tanggal" : "Insert date",
+    "pilih_tanggal_tabungan" : "Choose a saving date",
+    "data_tidak_ditemukan" : "Data not found",
+    "berhasil" : "Success",
+    "berhasil_menghapus" : "Successfully deleted",
+    "total_pengeluaran" : "Total Expenditure",
+    "mutasi_pengeluaran" : "Expenditure History",
+    "ayo_hitung_pengeluaranmu" : "Let's count your expenses",
+    "pilih_tanggal_pengeluaran" : "Choose the release date",
+
+    "tambah_tabungan" : "Add Savings",
+    "nama_tabungan_tidak_boleh_kosong" : "Saving name cannot be empty",
+    "nama_tabungan" : "Savings name",
+    "jumlah_uang_tidak_boleh_kosong" : "The amount of money cannot be empty",
+    "jumlah_uang" : "Amount of money",
+    "simpan" : "Save",
+
+    "tambah_pengeluaran" : "Add Expenses",
+    "nama_pengeluaran_tidak_boleh_kosong" : "Expenditure name cannot be empty",
+    "nama_pengeluaran" : "Expenditure name",
+
+    "ubah_tabungan" : "Edit Savings",
+    "ubah_pengeluaran" : "Edit Expenditure",
+
+    "mata_uang" : "$ {}",
+    "mata_uang2" : "$ ",
+
+    "utama" : "Home",
+    "masuk" : "Saving",
+    "keluarr" : "Expenditure",
+    "pengaturan" : "Settings",
+
+    "pilih_bahasa" : "Select Language",
+    "keluar_app" : "Close App",
+
+    "berhasil_menambah_data" : "Successfully added data",
+    "berhasil_mengubah_data" : "Successfully changed data",
+    "berhasil_mengubah_bahasa" : "Successfully changed Language"
+
+    
+
+
+
+
+
+
+
+
+
+}

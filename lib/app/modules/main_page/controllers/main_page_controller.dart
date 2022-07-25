@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,9 @@ import 'package:menabung/app/data/db/database.dart';
 import 'package:menabung/theme/color.dart';
 
 class MainPageController extends GetxController {
+  String kembali = tr('keluar');
+  String tabungann = tr('tabungan');
+   String pengeluaran = tr('pengeluaran');
  
   int tabungan() {
     int total = 0;

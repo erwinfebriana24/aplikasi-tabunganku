@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -17,9 +18,9 @@ class AddPengeluaranView extends GetView<AddPengeluaranController> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: appBlue,
-          title: Text("Tambah Pengeluaran",
+          title: Text("tambah_pengeluaran",
               style: GoogleFonts.lato(
-                  color: appWhite, fontSize: 16, fontWeight: FontWeight.bold)),
+                  color: appWhite, fontSize: 16, fontWeight: FontWeight.bold)).tr(),
           centerTitle: true,
         ),
         body: Form(
@@ -33,7 +34,7 @@ class AddPengeluaranView extends GetView<AddPengeluaranController> {
                 TextFormField(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Nama pengeluaran tidak boleh kosong";
+                        return controller.tidak_kosong;
                       } else {
                         return null;
                       }
@@ -47,7 +48,7 @@ class AddPengeluaranView extends GetView<AddPengeluaranController> {
                     autocorrect: false,
                     textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
-                        labelText: "Nama Pengeluaran",
+                        labelText: controller.nama_pengeluaran,
                         labelStyle: GoogleFonts.lato(
                             color: appBlack,
                             fontSize: 16,
@@ -61,11 +62,11 @@ class AddPengeluaranView extends GetView<AddPengeluaranController> {
                 TextFormField(
                     inputFormatters: [
                       CurrencyTextInputFormatter(
-                          decimalDigits: 0, symbol: "Rp ")
+                          decimalDigits: 0, symbol: controller.mata_uang)
                     ],
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Jumlah uang tidak boleh kosong";
+                        return controller.jumlah_uang_tidak_boleh_kosong;
                       } else {
                         return null;
                       }
@@ -78,7 +79,7 @@ class AddPengeluaranView extends GetView<AddPengeluaranController> {
                     keyboardType: TextInputType.number,
                     autocorrect: false,
                     decoration: InputDecoration(
-                        labelText: "Jumlah Uang",
+                        labelText: controller.jumlah_uang,
                         labelStyle: GoogleFonts.lato(
                             color: appBlack,
                             fontSize: 16,
@@ -102,11 +103,11 @@ class AddPengeluaranView extends GetView<AddPengeluaranController> {
                         }
                       },
                       child: controller.isLoading.isFalse
-                          ? Text("Simpan",
+                          ? Text("simpan",
                               style: GoogleFonts.lato(
                                   color: appWhite,
                                   fontSize: 16,
-                                  fontWeight: FontWeight.bold))
+                                  fontWeight: FontWeight.bold)).tr()
                           : CircularProgressIndicator(
                             color: appWhite,
                           ),

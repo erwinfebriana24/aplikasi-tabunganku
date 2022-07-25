@@ -1,12 +1,20 @@
-// ignore_for_file: avoid_print, prefer_const_constructors, unnecessary_cast
+// ignore_for_file: avoid_print, prefer_const_constructors, unnecessary_cast, non_constant_identifier_names
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:hive/hive.dart';
-import 'package:intl/intl.dart';
 import 'package:menabung/app/data/db/database.dart';
 
 class PengeluaranController extends GetxController {
+  String keluar = tr('keluar');
+  String pilih_tanggal = tr('pilih_tanggal');
+  String batal = tr('batal');
+  String pilih = tr('pilih');
+  String masukan_tanggal = tr('masukan_tanggal');
+  String berhasil = tr('berhasil');
+  String berhasil_menghapus = tr('berhasil_menghapus');
+
+  //////////////////////////////////////////////
   late BannerAd bannerAd;
   RxBool isAdLoad = false.obs;
   dynamic formatted;
@@ -65,7 +73,8 @@ class PengeluaranController extends GetxController {
     update();
     return total;
   }
-   int totalByDate() {
+
+  int totalByDate() {
     int total = 0;
     for (int i = 0; i < listDatabase.length; i++) {
       final data = listDatabase[i] as DatabasePengeluaran;

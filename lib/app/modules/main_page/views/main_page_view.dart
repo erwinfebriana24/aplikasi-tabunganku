@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors, unused_local_variable, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
 import 'package:double_back_to_close/double_back_to_close.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:menabung/animation/fadeanimation.dart';
 import 'package:menabung/theme/color.dart';
@@ -27,7 +27,7 @@ class MainPageView extends GetView<MainPageController> {
           //   centerTitle: true,
           // ),
           body: DoubleBack(
-              message: "Tekan sekali lagi untuk keluar",
+            message: controller.kembali,
               child: FadeAnimation(
                 delay: 1,
                 child: CustomScrollView(
@@ -57,26 +57,26 @@ class MainPageView extends GetView<MainPageController> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text("Selisih Uang",
+                                Text('selisih',
                                     style: GoogleFonts.lato(
                                         color: appBlack,
                                         fontSize: 16,
-                                        fontWeight: FontWeight.bold)),
+                                        fontWeight: FontWeight.bold)).tr(),
                                 controller.tabungan() -
                                             controller.pengeluran() <
                                         0
                                     ? Text(
-                                        "Rp ${formatter.format(controller.tabungan() - controller.pengeluran())}",
+                                        "mata_uang",
                                         style: GoogleFonts.lato(
                                             color: appRed,
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold))
+                                            fontWeight: FontWeight.bold)).tr(args: [formatter.format(controller.tabungan() - controller.pengeluran())])
                                     : Text(
-                                        "Rp ${formatter.format(controller.tabungan() - controller.pengeluran())}",
+                                        "mata_uang",
                                         style: GoogleFonts.lato(
                                             color: appGreen,
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold)),
+                                            fontWeight: FontWeight.bold)).tr(args: [formatter.format(controller.tabungan() - controller.pengeluran())]),
                               ],
                             ),
                           ),
@@ -98,13 +98,13 @@ class MainPageView extends GetView<MainPageController> {
                                             "assets/lottie/dev.json"),
                                       ),
                                       Text(
-                                        "Kritik dan Saran \n donganapps@gmail.com",
+                                        "saran",
                                         style: GoogleFonts.lato(
                                             color: appWhite,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                         textAlign: TextAlign.center,
-                                      ),
+                                      ).tr(),
                                     ],
                                   ),
                                   actions: [
@@ -151,11 +151,11 @@ class MainPageView extends GetView<MainPageController> {
                                   height: size.height * .10,
                                   width: size.width,
                                   child: Text(
-                                      "Grafik Selisih \n Tabungan Dan Pengeluaran",
+                                      "grafik",
                                       style: GoogleFonts.lato(
                                           color: appWhite,
                                           fontSize: 20,
-                                          fontWeight: FontWeight.bold), textAlign: TextAlign.center,)
+                                          fontWeight: FontWeight.bold), textAlign: TextAlign.center,).tr()
                                 ),
                                 Container(
                                   //  decoration: BoxDecoration(
@@ -202,7 +202,7 @@ class MainPageView extends GetView<MainPageController> {
                                   children: [
                                     Indicator(
                                       color: appGreen,
-                                      text: 'Tabungan',
+                                      text: controller.tabungann,
                                       isSquare: true,
                                     ),
                                     SizedBox(
@@ -210,7 +210,7 @@ class MainPageView extends GetView<MainPageController> {
                                     ),
                                     Indicator(
                                       color: appRed,
-                                      text: 'Pengeluaran',
+                                      text: controller.pengeluaran,
                                       isSquare: true,
                                     ),
                                   ],

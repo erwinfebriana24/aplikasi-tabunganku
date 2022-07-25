@@ -16,6 +16,8 @@ import '../modules/main_page/bindings/main_page_binding.dart';
 import '../modules/main_page/views/main_page_view.dart';
 import '../modules/pengeluaran/bindings/pengeluaran_binding.dart';
 import '../modules/pengeluaran/views/pengeluaran_view.dart';
+import '../modules/setting/bindings/setting_binding.dart';
+import '../modules/setting/views/setting_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 
@@ -71,6 +73,11 @@ class AppPages {
       name: _Paths.MAIN_PAGE,
       page: () => const MainPageView(),
       binding: MainPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTING,
+      page: () => const SettingView(),
+      binding: SettingBinding(),
     ),
   ];
 }

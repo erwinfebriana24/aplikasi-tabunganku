@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_is_empty, sized_box_for_whitespace, unused_local_variable, unnecessary_string_interpolations, avoid_print
 
 import 'package:double_back_to_close/double_back_to_close.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,7 +30,7 @@ class HomeView extends GetView<HomeController> {
         //   centerTitle: true,
         // ),
         body: DoubleBack(
-          message: "Tekan sekali lagi untuk keluar",
+          message: controller.keluar,
           child: FadeAnimation(
             delay: 1,
             child: CustomScrollView(
@@ -61,29 +62,29 @@ class HomeView extends GetView<HomeController> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             controller.valuess.isEmpty
-                                ? Text("Total Tabungan",
+                                ? Text("total_tabungan",
                                     style: GoogleFonts.lato(
                                         color: appBlack,
                                         fontSize: 16,
-                                        fontWeight: FontWeight.bold))
-                                : Text("Mutasi Tabungan",
+                                        fontWeight: FontWeight.bold)).tr()
+                                : Text("mutasi_tabungan",
                                     style: GoogleFonts.lato(
                                         color: appBlack,
                                         fontSize: 16,
-                                        fontWeight: FontWeight.bold)),
+                                        fontWeight: FontWeight.bold)).tr(),
                             controller.valuess.isEmpty
                                 ? Text(
-                                    "Rp ${formatter.format(controller.totalAllPrice())}",
+                                    "mata_uang",
                                     style: GoogleFonts.lato(
                                         color: appGreen,
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold))
+                                        fontWeight: FontWeight.bold)).tr(args: [formatter.format(controller.totalAllPrice())])
                                 : Text(
-                                    "Rp ${formatter.format(controller.totalByDate())}",
+                                    "mata_uang",
                                     style: GoogleFonts.lato(
                                         color: appGreen,
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold))
+                                        fontWeight: FontWeight.bold)).tr(args: [formatter.format(controller.totalByDate())])
                           ],
                         ),
                       ),
@@ -116,13 +117,13 @@ class HomeView extends GetView<HomeController> {
                                         Lottie.asset("assets/lottie/dev.json"),
                                   ),
                                   Text(
-                                    "Kritik dan Saran \n donganapps@gmail.com",
+                                    "saran",
                                     style: GoogleFonts.lato(
                                         color: appWhite,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                     textAlign: TextAlign.center,
-                                  ),
+                                  ).tr(),
                                 ],
                               ),
                               actions: [
@@ -154,11 +155,11 @@ class HomeView extends GetView<HomeController> {
                               height: size.height * .30,
                               child: Lottie.asset("assets/lottie/money.json"),
                             ),
-                            Text("Ayo menabung ",
+                            Text("ayo_menabung ",
                                 style: GoogleFonts.lato(
                                     color: appBlack,
                                     fontSize: 20,
-                                    fontWeight: FontWeight.bold))
+                                    fontWeight: FontWeight.bold)).tr()
                           ],
                         ),
                       )
@@ -202,13 +203,13 @@ class HomeView extends GetView<HomeController> {
                                                         child: child!);
                                                   },
                                                   helpText:
-                                                      "Pilih Tanggal",
-                                                  cancelText: "Batal",
-                                                  confirmText: "Pilih",
+                                                      controller.pilih_tanggal,
+                                                  cancelText: controller.batal,
+                                                  confirmText: controller.pilih,
                                                   fieldLabelText:
-                                                      "Pilih Tanggal",
+                                                      controller.pilih_tanggal,
                                                   fieldHintText:
-                                                      "Masukan Tanggal",
+                                                      controller.masukan_tanggal,
                                                   context: context,
                                                   initialDate: DateTime.now(),
                                                   firstDate: DateTime(2020),
@@ -230,12 +231,12 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                   Obx(() => Text(
                                       controller.date.value == ""
-                                          ? "Pilih tanggal tabungan"
+                                          ? "pilih_tanggal_tabungan"
                                           : "${controller.date.value}",
                                       style: GoogleFonts.lato(
                                           color: appBlack,
                                           fontSize: 16,
-                                          fontWeight: FontWeight.w800))),
+                                          fontWeight: FontWeight.w800)).tr()),
                                 ],
                               ),
                             ),
@@ -250,11 +251,11 @@ class HomeView extends GetView<HomeController> {
                             child: SizedBox(
                               height: size.height * .40,
                               child: Center(
-                                  child: Text("Data tidak ditemukan",
+                                  child: Text("data_tidak_ditemukan",
                                       style: GoogleFonts.lato(
                                           color: appBlack,
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.bold)).tr()),
                             ),
                           )
                         : SliverToBoxAdapter(
@@ -350,8 +351,8 @@ class DataAwal extends StatelessWidget {
                             onPressed: (() async {
                               await database.delete();
                               controller.totalAllPrice();
-                              Get.snackbar("Berhasil",
-                                  "Berhasil menghapus ${database.name}",
+                              Get.snackbar(controller.berhasil,
+                                  "${controller.berhasil_menghapus} ${database.name}",
                                   colorText: appWhite,
                                   icon:
                                       Lottie.asset("assets/lottie/check.json"),
@@ -384,11 +385,11 @@ class DataAwal extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Text("Rp ${formatter.format(database.price)}",
+                        Text("mata_uang",
                             style: GoogleFonts.lato(
                                 color: appGreen,
                                 fontSize: 16,
-                                fontWeight: FontWeight.w800)),
+                                fontWeight: FontWeight.w800)).tr(args: [formatter.format(database.price)]),
                         SizedBox(height: 10),
                         Text("${database.date}",
                             style: GoogleFonts.lato(
@@ -456,8 +457,8 @@ class DataBedasarkanTanggal extends StatelessWidget {
                               await database.delete();
                               controller.totalAllPrice();
                               controller.kondisiAwal();
-                              Get.snackbar("Berhasil",
-                                  "Berhasil menghapus ${database.name}",
+                              Get.snackbar(controller.berhasil,
+                                  "${controller.berhasil_menghapus} ${database.name}",
                                   colorText: appWhite,
                                   icon:
                                       Lottie.asset("assets/lottie/check.json"),
@@ -490,11 +491,11 @@ class DataBedasarkanTanggal extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Text("Rp ${formatter.format(database.price)}",
+                        Text("mata_uang",
                             style: GoogleFonts.lato(
                                 color: appGreen,
                                 fontSize: 16,
-                                fontWeight: FontWeight.w800)),
+                                fontWeight: FontWeight.w800)).tr(args: [formatter.format(database.price)]),
                         SizedBox(height: 10),
                         Text("${database.date}",
                             style: GoogleFonts.lato(

@@ -1,5 +1,6 @@
-// ignore_for_file: unnecessary_overrides, empty_catches, prefer_const_constructors, sized_box_for_whitespace, avoid_print
+// ignore_for_file: unnecessary_overrides, empty_catches, prefer_const_constructors, sized_box_for_whitespace, avoid_print, non_constant_identifier_names
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,12 @@ import 'package:menabung/app/routes/app_pages.dart';
 import 'package:menabung/theme/color.dart';
 
 class EditDataController extends GetxController {
+  String tidak_kosong = tr("nama_tabungan_tidak_boleh_kosong");
+  String nama_tabungan = tr("nama_tabungan");
+  String jumlah_uang_tidak_boleh_kosong = tr("jumlah_uang_tidak_boleh_kosong");
+  String jumlah_uang = tr("jumlah_uang");
+  String mata_uang = tr("mata_uang2");
+  /////////////////////////////////////////////////////
   TextEditingController nameC = TextEditingController();
   TextEditingController priceC = TextEditingController();
   final formKey = GlobalKey<FormState>(); // form validator key
@@ -16,7 +23,12 @@ class EditDataController extends GetxController {
 
   Future<void> editData(Database database) async {
     var data = priceC.text;
-    var split = data.replaceAll('Rp', '');
+    var split = "";
+    if (data.contains("Rp")) {
+      split = data.replaceAll('Rp', '');
+    } else {
+      split = data.replaceAll('\$', '');
+    }
     var splitFinnal = split.replaceAll(',', '');
     print(priceC.text);
     print(splitFinnal);
@@ -42,12 +54,12 @@ class EditDataController extends GetxController {
                     child: Lottie.asset("assets/lottie/check.json"),
                   ),
                   Text(
-                    "Berhasil mengubah data",
+                    "berhasil_mengubah_data",
                     style: GoogleFonts.lato(
                         color: appWhite,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
-                  )
+                  ).tr()
                 ],
               ),
               actions: [
