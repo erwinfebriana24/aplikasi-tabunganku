@@ -41,11 +41,7 @@ class AddDataController extends GetxController {
   Future<void> addData() async {
     var data = priceC.text;
     var split = "";
-    if (data.contains("Rp")) {
-      split = data.replaceAll('Rp', '');
-    } else{
-      split = data.replaceAll('\$', '');
-    }
+    split = data.replaceAll('${curency()}', '');
     var splitFinnal = split.replaceAll(',', '');
     print(priceC.text);
     print(split);
@@ -65,15 +61,8 @@ class AddDataController extends GetxController {
             ..price = int.parse(splitFinnal)
             ..namePrice = priceC.text
             ..date = format;
-          var data2 = DatabaseGlobal()
-            ..name = nameC.text
-            ..price = int.parse(splitFinnal)
-            ..namePrice = priceC.text
-            ..date = format;
           final box = DatabaseManager.getAllDatabase();
-          final box2 = DatabaseManager.getDatabaseGlobal();
           await box.add(data);
-          await box2.add(data2);
           Get.offAllNamed(Routes.DASHBOARD);
           Get.defaultDialog(
               backgroundColor: appBlue,
@@ -117,5 +106,15 @@ class AddDataController extends GetxController {
     } catch (e) {
       isLoading.value = false;
     }
+  }
+
+  curency(){
+    String name = "";
+    final box = DatabaseManager.getDataCurrency();
+    for (int i = 0; i < box.length; i++) {
+      final data = box.getAt(i) as DataCurrency;
+      name = data.nameCurency!;
+    }
+    return name;
   }
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, unused_local_variable, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -66,17 +66,17 @@ class MainPageView extends GetView<MainPageController> {
                                             controller.pengeluran() <
                                         0
                                     ? Text(
-                                        "mata_uang",
+                                        "${controller.curency()} ${formatter.format(controller.tabungan() - controller.pengeluran())}",
                                         style: GoogleFonts.lato(
                                             color: appRed,
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold)).tr(args: [formatter.format(controller.tabungan() - controller.pengeluran())])
+                                            fontWeight: FontWeight.bold))
                                     : Text(
-                                        "mata_uang",
+                                        "${controller.curency()} ${formatter.format(controller.tabungan() - controller.pengeluran())}",
                                         style: GoogleFonts.lato(
                                             color: appGreen,
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold)).tr(args: [formatter.format(controller.tabungan() - controller.pengeluran())]),
+                                            fontWeight: FontWeight.bold))
                               ],
                             ),
                           ),
@@ -224,6 +224,7 @@ class MainPageView extends GetView<MainPageController> {
     });
   }
 }
+
 
 class Indicator extends StatelessWidget {
   final Color color;

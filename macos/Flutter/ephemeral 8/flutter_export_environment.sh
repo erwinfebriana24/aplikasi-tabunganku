@@ -3,7 +3,6 @@
 export "FLUTTER_ROOT=/Users/iputuerwinfebriana/Development/flutter"
 export "FLUTTER_APPLICATION_PATH=/Users/iputuerwinfebriana/Documents/Aplikasi Flutter/menabung"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
-export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=8.0.0"
 export "FLUTTER_BUILD_NUMBER=8"

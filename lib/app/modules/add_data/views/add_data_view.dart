@@ -61,7 +61,7 @@ class AddDataView extends GetView<AddDataController> {
                   inputFormatters: [
                       CurrencyTextInputFormatter(
                         decimalDigits: 0,
-                        symbol: controller.mata_uang
+                        symbol: "${controller.curency()} " 
                       )
                     ],
                     validator: (value) {

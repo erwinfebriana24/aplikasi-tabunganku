@@ -96,38 +96,25 @@ class DatabasePengeluaranAdapter extends TypeAdapter<DatabasePengeluaran> {
           typeId == other.typeId;
 }
 
-class DatabaseGlobalAdapter extends TypeAdapter<DatabaseGlobal> {
+class DataCurrencyAdapter extends TypeAdapter<DataCurrency> {
   @override
   final int typeId = 2;
 
   @override
-  DatabaseGlobal read(BinaryReader reader) {
+  DataCurrency read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return DatabaseGlobal()
-      ..id = fields[0] as int?
-      ..name = fields[1] as String?
-      ..price = fields[2] as int?
-      ..namePrice = fields[3] as String?
-      ..date = fields[4] as String?;
+    return DataCurrency()..nameCurency = fields[0] as String?;
   }
 
   @override
-  void write(BinaryWriter writer, DatabaseGlobal obj) {
+  void write(BinaryWriter writer, DataCurrency obj) {
     writer
-      ..writeByte(5)
-      ..writeByte(0)
-      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.name)
-      ..writeByte(2)
-      ..write(obj.price)
-      ..writeByte(3)
-      ..write(obj.namePrice)
-      ..writeByte(4)
-      ..write(obj.date);
+      ..writeByte(0)
+      ..write(obj.nameCurency);
   }
 
   @override
@@ -136,7 +123,7 @@ class DatabaseGlobalAdapter extends TypeAdapter<DatabaseGlobal> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DatabaseGlobalAdapter &&
+      other is DataCurrencyAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

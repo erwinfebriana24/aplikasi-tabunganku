@@ -1,10 +1,13 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, unused_local_variable
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, unused_local_variable, avoid_print
 
+import 'package:currency_picker/currency_picker.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:menabung/app/data/db/database.dart';
+import 'package:menabung/app/routes/app_pages.dart';
 import 'package:menabung/theme/color.dart';
 
 import '../controllers/setting_controller.dart';
@@ -218,6 +221,28 @@ class SettingView extends GetView<SettingController> {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 15),
               child: ListTile(
+                title: Text("uang",
+                        style: GoogleFonts.lato(
+                            color: appBlack,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold))
+                    .tr(),
+                trailing: Icon(Icons.arrow_forward_ios),
+                onTap: () async {
+                await controller.currencyPicker(context);
+                },
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 30),
+              child: Divider(
+                thickness: 1,
+                color: appGrey,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 15),
+              child: ListTile(
                 title: Text("keluar_app",
                         style: GoogleFonts.lato(
                             color: appBlack,
@@ -227,12 +252,12 @@ class SettingView extends GetView<SettingController> {
                 trailing: Icon(Icons.arrow_forward_ios),
                 onTap: () {
                   Get.defaultDialog(
-                    backgroundColor: appBlue,
+                      backgroundColor: appBlue,
                       barrierDismissible: false,
                       titleStyle: GoogleFonts.lato(
-                                  color: appWhite,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal),
+                          color: appWhite,
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal),
                       title: controller.peringatan,
                       content: Text("yakin_ingin_keluar",
                               style: GoogleFonts.lato(
@@ -267,13 +292,6 @@ class SettingView extends GetView<SettingController> {
                 },
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 30),
-              child: Divider(
-                thickness: 1,
-                color: appGrey,
-              ),
-            )
           ],
         ));
   }

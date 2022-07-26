@@ -72,17 +72,17 @@ class PengeluaranView extends GetView<PengeluaranController> {
                                         fontWeight: FontWeight.bold)).tr(),
                             controller.valuess.isEmpty
                                 ? Text(
-                                    "mata_uang",
+                                    "${controller.curency()} ${formatter.format(controller.totalAllPrice())}",
                                     style: GoogleFonts.lato(
                                         color: appRed,
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold)).tr(args: [formatter.format(controller.totalAllPrice())])
+                                        fontWeight: FontWeight.bold))
                                 : Text(
-                                    "mata_uang",
+                                    "${controller.curency()} ${formatter.format(controller.totalByDate())}",
                                     style: GoogleFonts.lato(
                                         color: appRed,
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold)).tr(args: [formatter.format(controller.totalByDate())])
+                                        fontWeight: FontWeight.bold))
                           ],
                         ),
                       ),
@@ -382,11 +382,11 @@ class DataAwal extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Text("mata_uang",
+                        Text("${controller.curency()} ${formatter.format(database.price)}",
                             style: GoogleFonts.lato(
                                 color: appRed,
                                 fontSize: 16,
-                                fontWeight: FontWeight.w800)).tr(args: [formatter.format(database.price)]),
+                                fontWeight: FontWeight.w800)),
                         SizedBox(height: 10),
                         Text("${database.date}",
                             style: GoogleFonts.lato(
@@ -488,11 +488,11 @@ class DataBedasarkanTanggal extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Text("mata_uang",
+                        Text("${controller.curency()} ${formatter.format(database.price)}",
                             style: GoogleFonts.lato(
                                 color: appRed,
                                 fontSize: 16,
-                                fontWeight: FontWeight.w800)).tr(args: [formatter.format(database.price)]),
+                                fontWeight: FontWeight.w800)),
                         SizedBox(height: 10),
                         Text("${database.date}",
                             style: GoogleFonts.lato(

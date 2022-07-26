@@ -50,8 +50,10 @@
     "berhasil_mengubah_data" : "Berhasil mengubah data",
     "berhasil_mengubah_bahasa" : "Berhasil mengubah bahasa",
 
-    "peringatan" : "Perigatan",
+    "peringatan" : "Peringatan",
     "yakin_ingin_keluar" : "Yakin ingin keluar?",
-    "yakin" : "Yakin"
+    "yakin" : "Yakin",
+    "uang" : "Pilih Mata Uang",
+    "berhasil_ganti_mata_uang" : "Berhasil mengubah mata uang"
 
 }

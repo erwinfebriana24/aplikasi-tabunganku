@@ -4,6 +4,8 @@ import '../modules/add_data/bindings/add_data_binding.dart';
 import '../modules/add_data/views/add_data_view.dart';
 import '../modules/add_pengeluaran/bindings/add_pengeluaran_binding.dart';
 import '../modules/add_pengeluaran/views/add_pengeluaran_view.dart';
+import '../modules/currency/bindings/currency_binding.dart';
+import '../modules/currency/views/currency_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
 import '../modules/edit_data/bindings/edit_data_binding.dart';
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.SETTING,
       page: () => const SettingView(),
       binding: SettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.CURRENCY,
+      page: () => const CurrencyView(),
+      binding: CurrencyBinding(),
     ),
   ];
 }

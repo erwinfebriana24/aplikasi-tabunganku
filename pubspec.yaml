@@ -1,5 +1,5 @@
 name: menabung
-version: 8.0.0+8
+version: 10.0.0+10
 publish_to: none
 description: A new Flutter project.
 environment:
@@ -8,6 +8,7 @@ environment:
 dependencies:
   bottom_navy_bar: ^6.0.0
   cupertino_icons: ^1.0.2
+  currency_picker: ^2.0.11
   currency_text_input_formatter: ^2.1.5
   curved_navigation_bar: ^1.0.3
   double_back_to_close: ^2.0.0

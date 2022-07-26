@@ -16,10 +16,10 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(DatabaseAdapter());
   Hive.registerAdapter(DatabasePengeluaranAdapter());
-  Hive.registerAdapter(DatabaseGlobalAdapter());
+   Hive.registerAdapter(DataCurrencyAdapter());
   await Hive.openBox<Database>('database');
   await Hive.openBox<DatabasePengeluaran>('database_pengeluaran');
-  await Hive.openBox<DatabaseGlobal>('database_global');
+  await Hive.openBox<DataCurrency>('data_currency');
   await MobileAds.instance.initialize();
   runApp(
     EasyLocalization(
@@ -52,5 +52,6 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.SPLASH,
       getPages: AppPages.routes,
     );
+    
   }
 }

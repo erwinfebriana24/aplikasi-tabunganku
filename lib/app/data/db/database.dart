@@ -29,25 +29,15 @@ class DatabasePengeluaran extends HiveObject {
   @HiveField(4)
   String? date;
 }
-
 @HiveType(typeId: 2)
-class DatabaseGlobal extends HiveObject {
+class DataCurrency extends HiveObject {
   @HiveField(0)
-  int? id;
-  @HiveField(1)
-  String? name;
-  @HiveField(2)
-  int? price;
-  @HiveField(3)
-  String? namePrice;
-  @HiveField(4)
-  String? date;
+  String? nameCurency;
 }
 
 class DatabaseManager {
   static Box<Database> getAllDatabase() => Hive.box<Database>('database');
   static Box<DatabasePengeluaran> getAllDatabasePengeluaran() =>
       Hive.box<DatabasePengeluaran>('database_pengeluaran');
-  static Box<DatabaseGlobal> getDatabaseGlobal() =>
-      Hive.box<DatabaseGlobal>('database_global');
+  static Box<DataCurrency> getDataCurrency() => Hive.box('data_currency');
 }

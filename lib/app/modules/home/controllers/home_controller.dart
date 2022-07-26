@@ -83,6 +83,15 @@ class HomeController extends GetxController {
     update();
     return total;
   }
+  curency(){
+    String name = "";
+    final box = DatabaseManager.getDataCurrency();
+    for (int i = 0; i < box.length; i++) {
+      final data = box.getAt(i) as DataCurrency;
+      name = data.nameCurency!;
+    }
+    return name;
+  }
 
   @override
   void onInit() {

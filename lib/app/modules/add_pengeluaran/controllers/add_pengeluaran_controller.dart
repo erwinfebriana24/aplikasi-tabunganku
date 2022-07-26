@@ -39,13 +39,9 @@ class AddPengeluaranController extends GetxController {
   }
 
   Future<void> addData() async {
-  var data = priceC.text;
+    var data = priceC.text;
     var split = "";
-    if (data.contains("Rp")) {
-      split = data.replaceAll('Rp', '');
-    } else{
-      split = data.replaceAll('\$', '');
-    }
+    split = data.replaceAll('${curency()}', '');
     var splitFinnal = split.replaceAll(',', '');
     print(priceC.text);
     print(split);
@@ -111,5 +107,15 @@ class AddPengeluaranController extends GetxController {
       print(e);
       isLoading.value = false;
     }
+  }
+
+  curency() {
+    String name = "";
+    final box = DatabaseManager.getDataCurrency();
+    for (int i = 0; i < box.length; i++) {
+      final data = box.getAt(i) as DataCurrency;
+      name = data.nameCurency!;
+    }
+    return name;
   }
 }

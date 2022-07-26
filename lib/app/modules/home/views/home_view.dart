@@ -74,17 +74,17 @@ class HomeView extends GetView<HomeController> {
                                         fontWeight: FontWeight.bold)).tr(),
                             controller.valuess.isEmpty
                                 ? Text(
-                                    "mata_uang",
+                                    "${controller.curency()} ${formatter.format(controller.totalAllPrice())}",
                                     style: GoogleFonts.lato(
                                         color: appGreen,
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold)).tr(args: [formatter.format(controller.totalAllPrice())])
+                                        fontWeight: FontWeight.bold))
                                 : Text(
-                                    "mata_uang",
+                                    "${controller.curency()} ${formatter.format(controller.totalByDate())}",
                                     style: GoogleFonts.lato(
                                         color: appGreen,
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold)).tr(args: [formatter.format(controller.totalByDate())])
+                                        fontWeight: FontWeight.bold))
                           ],
                         ),
                       ),
@@ -155,7 +155,7 @@ class HomeView extends GetView<HomeController> {
                               height: size.height * .30,
                               child: Lottie.asset("assets/lottie/money.json"),
                             ),
-                            Text("ayo_menabung ",
+                            Text("ayo_menabung",
                                 style: GoogleFonts.lato(
                                     color: appBlack,
                                     fontSize: 20,
@@ -312,7 +312,7 @@ class DataAwal extends StatelessWidget {
     final controller = Get.put(HomeController());
     var list = DatabaseManager.getAllDatabase();
     var box = list.values.toList();
-    return ListView.builder(
+      return ListView.builder(
         physics: ScrollPhysics(),
         shrinkWrap: true,
         itemCount: list.length,
@@ -385,11 +385,11 @@ class DataAwal extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Text("mata_uang",
+                        Text("${controller.curency()} ${formatter.format(database.price)}",
                             style: GoogleFonts.lato(
                                 color: appGreen,
                                 fontSize: 16,
-                                fontWeight: FontWeight.w800)).tr(args: [formatter.format(database.price)]),
+                                fontWeight: FontWeight.w800)),
                         SizedBox(height: 10),
                         Text("${database.date}",
                             style: GoogleFonts.lato(
@@ -491,11 +491,11 @@ class DataBedasarkanTanggal extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Text("mata_uang",
+                        Text("${controller.curency()} ${formatter.format(database.price)}",
                             style: GoogleFonts.lato(
                                 color: appGreen,
                                 fontSize: 16,
-                                fontWeight: FontWeight.w800)).tr(args: [formatter.format(database.price)]),
+                                fontWeight: FontWeight.w800)),
                         SizedBox(height: 10),
                         Text("${database.date}",
                             style: GoogleFonts.lato(
