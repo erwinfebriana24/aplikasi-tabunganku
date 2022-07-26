@@ -236,7 +236,41 @@ class SettingView extends GetView<SettingController> {
                       .tr(),
                   trailing: Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    controller.closeApp();
+                    Get.defaultDialog(
+                                    barrierDismissible: false,
+                                    title: controller.peringatan,
+                                    content: Text(
+                                        "yakin_ingin_keluar",
+                                        style: GoogleFonts.lato(
+                                            color: appBlack,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.normal)).tr(),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          child: Text(
+                                            "batal",
+                                            style: GoogleFonts.lato(
+                                                color: appGreen,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ).tr()),
+                                      TextButton(
+                                          onPressed: () {
+                                           controller.closeApp();
+                                          },
+                                          child: Text(
+                                            "yakin",
+                                            style: GoogleFonts.lato(
+                                                color: appGreen,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ).tr())
+                                    ]);
+
+                    
                   },
                 ),
               ),

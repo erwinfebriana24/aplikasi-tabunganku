@@ -48,6 +48,10 @@
 
     "berhasil_menambah_data" : "Berhasil menambah data",
     "berhasil_mengubah_data" : "Berhasil mengubah data",
-    "berhasil_mengubah_bahasa" : "Berhasil mengubah bahasa"
+    "berhasil_mengubah_bahasa" : "Berhasil mengubah bahasa",
+
+    "peringatan" : "Perigatan",
+    "yakin_ingin_keluar" : "Yakin ingin keluar?",
+    "yakin" : "Yakin"
 
 }

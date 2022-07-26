@@ -48,7 +48,13 @@
 
     "berhasil_menambah_data" : "Successfully added data",
     "berhasil_mengubah_data" : "Successfully changed data",
-    "berhasil_mengubah_bahasa" : "Successfully changed Language"
+    "berhasil_mengubah_bahasa" : "Successfully changed Language",
+
+    "peringatan" : "Warning",
+    "yakin_ingin_keluar" : "Are you sure you want to close app?",
+    "yakin" : "Sure"
+
+    
 
     
 
