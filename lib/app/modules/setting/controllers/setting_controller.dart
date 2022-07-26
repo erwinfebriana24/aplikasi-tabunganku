@@ -5,16 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class SettingController extends GetxController {
-
   String peringatan = tr("peringatan");
-  
 
-   closeApp(){
+  closeApp() {
     if (Platform.isAndroid) {
       SystemNavigator.pop();
     } else {
       exit(0);
     }
   }
-
 }
