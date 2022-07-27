@@ -14,7 +14,6 @@ class EditDataController extends GetxController {
   String nama_tabungan = tr("nama_tabungan");
   String jumlah_uang_tidak_boleh_kosong = tr("jumlah_uang_tidak_boleh_kosong");
   String jumlah_uang = tr("jumlah_uang");
-  String mata_uang = tr("mata_uang2");
   /////////////////////////////////////////////////////
   TextEditingController nameC = TextEditingController();
   TextEditingController priceC = TextEditingController();
@@ -24,11 +23,7 @@ class EditDataController extends GetxController {
   Future<void> editData(Database database) async {
     var data = priceC.text;
     var split = "";
-    if (data.contains("Rp")) {
-      split = data.replaceAll('Rp', '');
-    } else {
-      split = data.replaceAll('\$', '');
-    }
+    split = data.replaceAll('${curency()}', '');
     var splitFinnal = split.replaceAll(',', '');
     print(priceC.text);
     print(splitFinnal);
@@ -84,12 +79,23 @@ class EditDataController extends GetxController {
       isLoading.value = false;
     }
   }
+  curency(){
+    String name = "";
+    final box = DatabaseManager.getDataCurrency();
+    for (int i = 0; i < box.length; i++) {
+      final data = box.getAt(i) as DataCurrency;
+      name = data.nameCurency!;
+    }
+    return name;
+  }
 
   @override
   void onInit() {
+    curency();
     Database database = Get.arguments;
     nameC.text = database.name!;
-    priceC.text = database.namePrice.toString();
+    print(database.namePrice);
+    priceC.text = database.price.toString();
     super.onInit();
   }
 }

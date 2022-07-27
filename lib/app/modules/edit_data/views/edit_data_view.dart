@@ -61,7 +61,7 @@ class EditDataView extends GetView<EditDataController> {
                 TextFormField(
                     inputFormatters: [
                       CurrencyTextInputFormatter(
-                          decimalDigits: 0, symbol: controller.mata_uang)
+                          decimalDigits: 0, symbol: "${controller.curency()} ")
                     ],
                     validator: (value) {
                       if (value!.isEmpty) {

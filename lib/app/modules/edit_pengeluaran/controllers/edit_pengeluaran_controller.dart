@@ -21,13 +21,9 @@ class EditPengeluaranController extends GetxController {
   RxBool isLoading = false.obs;
 
   Future<void> editData(DatabasePengeluaran database) async {
-   var data = priceC.text;
+    var data = priceC.text;
     var split = "";
-    if (data.contains("Rp")) {
-      split = data.replaceAll('Rp', '');
-    } else{
-      split = data.replaceAll('\$', '');
-    }
+    split = data.replaceAll('${curency()}', '');
     var splitFinnal = split.replaceAll(',', '');
     print(priceC.text);
     print(splitFinnal);
@@ -84,11 +80,21 @@ class EditPengeluaranController extends GetxController {
     }
   }
 
+  curency() {
+    String name = "";
+    final box = DatabaseManager.getDataCurrency();
+    for (int i = 0; i < box.length; i++) {
+      final data = box.getAt(i) as DataCurrency;
+      name = data.nameCurency!;
+    }
+    return name;
+  }
+
   @override
   void onInit() {
     DatabasePengeluaran database = Get.arguments;
     nameC.text = database.name!;
-    priceC.text = database.namePrice.toString();
+    priceC.text = database.price.toString();
     super.onInit();
   }
 }

@@ -15,7 +15,6 @@ class AddDataController extends GetxController {
   String nama_tabungan = tr("nama_tabungan");
   String jumlah_uang_tidak_boleh_kosong = tr("jumlah_uang_tidak_boleh_kosong");
   String jumlah_uang = tr("jumlah_uang");
-  String mata_uang = tr('mata_uang2');
   /////////////////////////////////////////////////////
   TextEditingController nameC = TextEditingController();
   TextEditingController priceC = TextEditingController();
