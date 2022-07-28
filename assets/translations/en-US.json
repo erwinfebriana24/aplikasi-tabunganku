@@ -54,7 +54,8 @@
     "yakin_ingin_keluar" : "Are you sure to close app?",
     "yakin" : "Sure",
     "uang" : "Change Currency",
-    "berhasil_ganti_mata_uang" : "Successfully changed currency"
+    "berhasil_ganti_mata_uang" : "Successfully changed currency",
+    "silakan_pilih_mata_uang_di_menu_setting" : "Please select a currency in the settings menu"
 
     
 

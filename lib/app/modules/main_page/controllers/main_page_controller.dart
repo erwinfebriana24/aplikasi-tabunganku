@@ -9,6 +9,7 @@ class MainPageController extends GetxController {
   String kembali = tr('keluar');
   String tabungann = tr('tabungan');
   String pengeluaran = tr('pengeluaran');
+   final boxx = DatabaseManager.getDataCurrency();
 
   int tabungan() {
     int total = 0;

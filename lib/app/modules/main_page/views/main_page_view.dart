@@ -27,7 +27,7 @@ class MainPageView extends GetView<MainPageController> {
           //   centerTitle: true,
           // ),
           body: DoubleBack(
-            message: controller.kembali,
+              message: controller.kembali,
               child: FadeAnimation(
                 delay: 1,
                 child: CustomScrollView(
@@ -58,10 +58,11 @@ class MainPageView extends GetView<MainPageController> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text('selisih',
-                                    style: GoogleFonts.lato(
-                                        color: appBlack,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold)).tr(),
+                                        style: GoogleFonts.lato(
+                                            color: appBlack,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold))
+                                    .tr(),
                                 controller.tabungan() -
                                             controller.pengeluran() <
                                         0
@@ -127,104 +128,122 @@ class MainPageView extends GetView<MainPageController> {
                             )),
                       ],
                     ),
-                    controller.tabungan() - controller.pengeluran() == 0
+                    controller.boxx.length == 0
                         ? SliverToBoxAdapter(
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                  width: size.width * .50,
-                                  height: size.height * .40,
-                                  child:
-                                      Lottie.asset("assets/lottie/home.json"),
-                                ),
+                                  margin: EdgeInsets.only(top: 200),
+                                  child: Text(
+                                      "silakan_pilih_mata_uang_di_menu_setting",
+                                      style: GoogleFonts.lato(
+                                          color: appBlack,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold)).tr()),
                             ],
                           ))
-                        : SliverToBoxAdapter(
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: appBlue,
+                        : controller.tabungan() - controller.pengeluran() == 0
+                            ? SliverToBoxAdapter(
+                                child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: size.width * .50,
+                                    height: size.height * .40,
+                                    child:
+                                        Lottie.asset("assets/lottie/home.json"),
                                   ),
-                                  alignment: Alignment.center,
-                                  height: size.height * .10,
-                                  width: size.width,
-                                  child: Text(
-                                      "grafik",
-                                      style: GoogleFonts.lato(
-                                          color: appWhite,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold), textAlign: TextAlign.center,).tr()
-                                ),
-                                Container(
-                                  //  decoration: BoxDecoration(
-                                  //   borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
-                                  //   color: appWhite,
-                                  // ),
-                                  height: size.height * .40,
-                                  width: size.width,
-                                  child: PieChart(PieChartData(
-                                      centerSpaceRadius: 30,
-                                      sectionsSpace: 3,
-                                      borderData: FlBorderData(show: false),
-                                      sections: [
-                                        PieChartSectionData(
-                                            title:
-                                                "${controller.tabungan() / 1000}",
-                                            value: controller
-                                                .tabungan()
-                                                .toDouble(),
-                                            color: appGreen,
-                                            radius: 55,
-                                            titleStyle: GoogleFonts.lato(
-                                                color: appWhite,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold)),
-                                        PieChartSectionData(
-                                            title:
-                                                "${controller.pengeluran() / 1000}",
-                                            value: controller
-                                                .pengeluran()
-                                                .toDouble(),
-                                            color: appRed,
-                                            radius: 50,
-                                            titleStyle: GoogleFonts.lato(
-                                                color: appWhite,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold)),
-                                      ])),
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                ],
+                              ))
+                            : SliverToBoxAdapter(
+                                child: Column(
                                   children: [
-                                    Indicator(
-                                      color: appGreen,
-                                      text: controller.tabungann,
-                                      isSquare: true,
+                                    Container(
+                                        decoration: BoxDecoration(
+                                          color: appBlue,
+                                        ),
+                                        alignment: Alignment.center,
+                                        height: size.height * .10,
+                                        width: size.width,
+                                        child: Text(
+                                          "grafik",
+                                          style: GoogleFonts.lato(
+                                              color: appWhite,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                          textAlign: TextAlign.center,
+                                        ).tr()),
+                                    Container(
+                                      //  decoration: BoxDecoration(
+                                      //   borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
+                                      //   color: appWhite,
+                                      // ),
+                                      height: size.height * .40,
+                                      width: size.width,
+                                      child: PieChart(PieChartData(
+                                          centerSpaceRadius: 30,
+                                          sectionsSpace: 3,
+                                          borderData: FlBorderData(show: false),
+                                          sections: [
+                                            PieChartSectionData(
+                                                title:
+                                                    "${controller.tabungan() / 1000}",
+                                                value: controller
+                                                    .tabungan()
+                                                    .toDouble(),
+                                                color: appGreen,
+                                                radius: 55,
+                                                titleStyle: GoogleFonts.lato(
+                                                    color: appWhite,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            PieChartSectionData(
+                                                title:
+                                                    "${controller.pengeluran() / 1000}",
+                                                value: controller
+                                                    .pengeluran()
+                                                    .toDouble(),
+                                                color: appRed,
+                                                radius: 50,
+                                                titleStyle: GoogleFonts.lato(
+                                                    color: appWhite,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ])),
                                     ),
-                                    SizedBox(
-                                      height: 4,
-                                    ),
-                                    Indicator(
-                                      color: appRed,
-                                      text: controller.pengeluaran,
-                                      isSquare: true,
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Indicator(
+                                          color: appGreen,
+                                          text: controller.tabungann,
+                                          isSquare: true,
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        Indicator(
+                                          color: appRed,
+                                          text: controller.pengeluaran,
+                                          isSquare: true,
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
+                              ),
                   ],
                 ),
               )));
     });
   }
 }
-
 
 class Indicator extends StatelessWidget {
   final Color color;
@@ -266,4 +285,3 @@ class Indicator extends StatelessWidget {
     );
   }
 }
-

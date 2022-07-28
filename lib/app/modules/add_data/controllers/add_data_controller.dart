@@ -1,4 +1,4 @@
-// ignore_for_file: empty_catches, unnecessary_overrides, avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, non_constant_identifier_names, unused_local_variable
+// ignore_for_file: empty_catches, unnecessary_overrides, avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, non_constant_identifier_names, unused_local_variable, curly_braces_in_flow_control_structures
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -40,8 +40,13 @@ class AddDataController extends GetxController {
   Future<void> addData() async {
     var data = priceC.text;
     var split = "";
-    split = data.replaceAll('${curency()}', '');
-    var splitFinnal = split.replaceAll(',', '');
+    var splitFinnal = "";
+    if (data.contains("${curency()}")) {
+      split = data.replaceAll('${curency()}', '');
+      splitFinnal = split.replaceAll(',', '');
+    } else {
+      splitFinnal = split.replaceAll(',', '');
+    }
     print(priceC.text);
     print(split);
     print(splitFinnal);
@@ -107,7 +112,7 @@ class AddDataController extends GetxController {
     }
   }
 
-  curency(){
+  curency() {
     String name = "";
     final box = DatabaseManager.getDataCurrency();
     for (int i = 0; i < box.length; i++) {

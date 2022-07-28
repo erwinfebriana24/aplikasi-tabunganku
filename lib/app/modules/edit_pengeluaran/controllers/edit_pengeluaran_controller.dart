@@ -21,12 +21,19 @@ class EditPengeluaranController extends GetxController {
   RxBool isLoading = false.obs;
 
   Future<void> editData(DatabasePengeluaran database) async {
-    var data = priceC.text;
+     var data = priceC.text;
     var split = "";
-    split = data.replaceAll('${curency()}', '');
-    var splitFinnal = split.replaceAll(',', '');
+    var splitFinnal = "";
+    if (data.contains("${curency()}")) {
+      split = data.replaceAll('${curency()}', '');
+      splitFinnal = split.replaceAll(',', '');
+    } else {
+      splitFinnal = split.replaceAll(',', '');
+    }
     print(priceC.text);
+    print(split);
     print(splitFinnal);
+    isLoading.value = true;
     isLoading.value = true;
     try {
       Future.delayed(Duration(seconds: 1), (() {
